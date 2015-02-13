@@ -28,7 +28,7 @@ Called by the picker view when it needs the number of rows for a specific compon
 Called by the picker view when it needs the number of section. (optional)<br/>
 If it is not defined default value 1 will be returned.
 
-#### The delegate ``:
+#### The delegate `EMPickerViewDelegate`:
 
 - `optional func widthFractionForSectionsInPickerView(pickerView: EMPickerView) -> [CGFloat]`<br/>
 Called by the picker view when it needs the section width to use for drawing the content.<br/>
