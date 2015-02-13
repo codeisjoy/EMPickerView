@@ -1,6 +1,8 @@
 # EMPickerView
 A customisable picker view in Swift
 
+![EMPickerView Screenshot](https://github.com/codeisjoy/EMPickerView/blob/master/EMPickerView_Date_Time.png)
+
 The user interface provided by a picker view consists of sections, components and rows.
 * A section is a set of components which have the same indicator lines.
 Each section has an indexed location (left to right) in the picke view.
@@ -16,6 +18,14 @@ It is a subclass of UIView so could be initialized either in Storyboard or by co
 Then set the `dataSource` and `delegate` properties.
 The methods of `EMPickerViewDataSource` and `EMPickerViewDelegate` will control how the picker view looks like.
 
+#### Properties
+
+- `componentsRowHeight`<br/>
+A float value indicating the height of the component rows
+<hr/>
+- `tintColor`<br/>
+The tint colour to apply to the selection indicator lines
+
 #### The data source `EMPickerViewDataSource`:
 
 - `func pickerView(pickerView: EMPickerView, numberOfComponentsInSection section: Int) -> Int`<br/>
@@ -28,7 +38,7 @@ Called by the picker view when it needs the number of rows for a specific compon
 Called by the picker view when it needs the number of section. (optional)<br/>
 If it is not defined default value 1 will be returned.
 
-#### The delegate ``:
+#### The delegate `EMPickerViewDelegate`:
 
 - `optional func widthFractionForSectionsInPickerView(pickerView: EMPickerView) -> [CGFloat]`<br/>
 Called by the picker view when it needs the section width to use for drawing the content.<br/>
@@ -50,3 +60,11 @@ However, if your implementation of this method returns nil, the picker view fall
 <hr/>
 - `optional func pickerView(pickerView: EMPickerView, didSelectRowAtIndex row: Int, component: Int, section: Int)`<br/>
 Called by the picker view when the user selects a row in a component and section and gives their index values.
+
+## Install
+Simply add it as a submodule then import `EMPickerView` folder into your Xcode project.
+
+	git submodule add https://github.com/codeisjoy/EMPickerView.git <your lib directory>
+
+## Note
+This is the basic picker view. To have a date/time picker view the only thing that should be done is providing your date and time data through the `dataSource` methods and modifying the `delegate` methods to have your own picker view set.
