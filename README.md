@@ -1,6 +1,8 @@
 # EMPickerView
 A customisable picker view in Swift
 
+![EMPickerView Screenshot](https://github.com/codeisjoy/EMPickerView/blob/master/EMPickerView_Date_Time.png)
+
 The user interface provided by a picker view consists of sections, components and rows.
 * A section is a set of components which have the same indicator lines.
 Each section has an indexed location (left to right) in the picke view.
