@@ -36,7 +36,7 @@ class EMPickerViewRow: UITableViewCell {
     }
 
     private func initialize() {
-        //selectionStyle = .None
+        selectionStyle = .None
         backgroundColor = UIColor.clearColor()
         if respondsToSelector(Selector("setLayoutMargins:")) {
             layoutMargins = UIEdgeInsetsZero

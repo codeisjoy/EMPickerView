@@ -18,9 +18,9 @@ class ViewController: UIViewController {
         pv?.delegate = self;
         pv?.dataSource = self;
 
-        view.addSubview(pv!)
-
         pv?.selectRowAtIndex(3, component: 1, section: 0, animated: false)
+
+        view.addSubview(pv!)
     }
 
     override func didReceiveMemoryWarning() {

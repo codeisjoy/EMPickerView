@@ -167,7 +167,7 @@ class EMPickerView: UIView {
 
         let tableView: UITableView = componentsAtSection![component] as UITableView
         tableView.selectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), animated: animated, scrollPosition: .None)
-        tableView.scrollToNearestSelectedRowAtScrollPosition(.None, animated: false)
+        tableView.scrollToNearestSelectedRowAtScrollPosition(.None, animated: animated)
 
         delegate?.pickerView?(self, didSelectRowAtIndex: index, component: component, section: section)
     }
@@ -215,7 +215,7 @@ class EMPickerView: UIView {
             component.showsHorizontalScrollIndicator = false
             component.showsVerticalScrollIndicator = false
             component.backgroundColor = UIColor.clearColor()
-            //component.separatorStyle = .None
+            component.separatorStyle = .None
             component.dataSource = self
             component.delegate = self
 
@@ -329,14 +329,13 @@ extension EMPickerView: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return componentsRowHeight
     }
-    /*
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let index = indexForComponentView(tableView)
         if index.component != NSNotFound && index.section != NSNotFound {
             selectRowAtIndex(indexPath.row, component: index.component, section: index.section, animated: true)
         }
     }
-    */
 }
 
 // MARK: - UIScrollViewDelegate Methods
