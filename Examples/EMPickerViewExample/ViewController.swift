@@ -18,11 +18,9 @@ class ViewController: UIViewController {
         pv?.delegate = self;
         pv?.dataSource = self;
 
-        pv?.selectRowAtIndex(3, component: 1, section: 0, animated: false)
-
-        pv?.frame = CGRectMake(10, 50, view.bounds.width - 20, 180)
-
         view.addSubview(pv!)
+
+        pv?.selectRowAtIndex(3, component: 1, section: 0, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,7 +40,7 @@ extension ViewController: EMPickerViewDataSource {
     }
 
     func pickerView(pickerView: EMPickerView, numberOfRowsInComponent component: Int, section: Int) -> Int {
-        return component > 1 ? 5 : 10
+        return component > 1 ? 2 : 10
     }
 }
 
@@ -79,6 +77,6 @@ extension ViewController: EMPickerViewDelegate {
     }
 
     func pickerView(pickerView: EMPickerView, didSelectRowAtIndex row: Int, component: Int, section: Int) {
-        println("Selected: Row", row, "Component", component, "Section", section)
+        //println("Selected: Row", row, "Component", component, "Section", section)
     }
 }

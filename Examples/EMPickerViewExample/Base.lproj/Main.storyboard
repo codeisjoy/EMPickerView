@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GyH-Zh-7aQ" customClass="EMPickerView" customModule="EMPickerViewExample" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="126" width="600" height="120"/>
+                                <rect key="frame" x="0.0" y="126" width="600" height="190"/>
                                 <color key="backgroundColor" red="0.84705882349999995" green="0.95294117649999999" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="OlD-gI-fbp"/>
+                                    <constraint firstAttribute="height" constant="190" id="OlD-gI-fbp"/>
                                 </constraints>
                             </view>
                         </subviews>
