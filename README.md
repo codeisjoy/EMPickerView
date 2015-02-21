@@ -25,6 +25,17 @@ A float value indicating the height of the component rows
 <hr/>
 - `tintColor`<br/>
 The tint colour to apply to the selection indicator lines
+<hr/>
+- `dataSource`<br/>
+The data source for the picker view.
+
+#### Methods
+
+- `func selectRowAtIndex(index: Int, component: Int, section: Int, animated: Bool)`<br/>
+Selects a specific row and given component and section index.
+<hr/>
+- `func selectedRow(#component: Int, section: Int) -> Int`<br/>
+Gives the selected row index for given component and section index.
 
 #### The data source `EMPickerViewDataSource`:
 

@@ -172,6 +172,17 @@ class EMPickerView: UIView {
         delegate?.pickerView?(self, didSelectRowAtIndex: index, component: component, section: section)
     }
 
+    func selectedRow(#component: Int, section: Int) -> Int {
+        if let componentsOfSection = components[section] {
+            if component < componentsOfSection.count {
+                let componentView: UITableView = componentsOfSection[component]
+                return componentView.indexPathForSelectedRow()?.row ?? NSNotFound
+            }
+        }
+
+        return NSNotFound
+    }
+
     // MARK: - Private Methods
 
     private func setNeedsValidateDataSource() {

@@ -77,6 +77,7 @@ extension ViewController: EMPickerViewDelegate {
     }
 
     func pickerView(pickerView: EMPickerView, didSelectRowAtIndex row: Int, component: Int, section: Int) {
-        //println("Selected: Row", row, "Component", component, "Section", section)
+        println("Selected: Row", row, "Component", component, "Section", section)
+        println("Selected row at component 0 and section \(section) is \(pickerView.selectedRow(component: 0, section: section))")
     }
 }
