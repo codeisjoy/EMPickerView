@@ -16,7 +16,7 @@ class EMPickerView: UIView {
     // MARK: - Constants
 
     private let sectionsGap: CGFloat = 8
-    private let componentRowId: NSString = "EMPickerViewComponentRow"
+    private let componentRowId: String = "EMPickerViewComponentRow"
     private let defaultTintColor: UIColor = UIColor(red:0.28, green:0.61, blue:1, alpha:1)
 
     // MARK: - Public Properties
@@ -51,11 +51,6 @@ class EMPickerView: UIView {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        tintColor = defaultTintColor
-    }
-
-    override init() {
-        super.init()
         tintColor = defaultTintColor
     }
 
@@ -164,20 +159,19 @@ class EMPickerView: UIView {
         if componentsAtSection == nil || componentsAtSection?.count < 1 {
             return
         }
+        
+        if let tableView = componentsAtSection![component] as? UITableView {
+            tableView.selectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), animated: animated, scrollPosition: .None)
+            tableView.scrollToNearestSelectedRowAtScrollPosition(.None, animated: animated)
+        }
 
-        let tableView: UITableView = componentsAtSection![component] as UITableView
-        tableView.selectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), animated: animated, scrollPosition: .None)
-        tableView.scrollToNearestSelectedRowAtScrollPosition(.None, animated: animated)
-
-        delegate?.pickerView?(self, didSelectRowAtIndex: index, component: component, section: section)
+        self.delegate?.pickerView?(self, didSelectRowAtIndex: index, component: component, section: section)
     }
 
     func selectedRow(#component: Int, section: Int) -> Int {
-        if let componentsOfSection = components[section] {
-            if component < componentsOfSection.count {
-                let componentView: UITableView = componentsOfSection[component]
-                return componentView.indexPathForSelectedRow()?.row ?? NSNotFound
-            }
+        if let componentsOfSection = components[section] where componentsOfSection.count > component {
+            let componentView: UITableView = componentsOfSection[component]
+            return componentView.indexPathForSelectedRow()?.row ?? NSNotFound
         }
 
         return NSNotFound
@@ -315,7 +309,7 @@ extension EMPickerView: UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(componentRowId) as UITableViewCell
+        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(componentRowId) as! UITableViewCell
         cell.textLabel?.textAlignment = .Center
 
         let index = indexForComponentView(tableView)
@@ -355,7 +349,7 @@ extension EMPickerView: UITableViewDelegate {
 extension EMPickerView: UIScrollViewDelegate {
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let component: UITableView = scrollView as UITableView
+        let component: UITableView = scrollView as! UITableView
 
         let center: CGPoint = component.superview!.convertPoint(component.center, toView: component)
         let indexPathAtCenter: NSIndexPath? = component.indexPathForRowAtPoint(center)
@@ -375,12 +369,12 @@ extension EMPickerView: UIScrollViewDelegate {
         // When dragging end with no further animation and scrolling, velocity.y == 0,
         // component should scroll to the selected cell
         if velocity.y == 0 {
-            scrollComponent(scrollView as UITableView, toContentOffset: targetContentOffset.memory, animated: true)
+            scrollComponent(scrollView as! UITableView, toContentOffset: targetContentOffset.memory, animated: true)
         }
     }
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         // Scrolling to the selected cell
-        scrollComponent(scrollView as UITableView, toContentOffset: scrollView.contentOffset, animated: true)
+        scrollComponent(scrollView as! UITableView, toContentOffset: scrollView.contentOffset, animated: true)
     }
 }

@@ -23,7 +23,7 @@ class EMPickerViewRow: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        if let label = self.textLabel? {
+        if let label = self.textLabel {
             let textLabelAlpha: CGFloat = selected ? 1.0 : 0.5
             UIView.animateWithDuration(0.25, animations: { label.alpha = textLabelAlpha })
         }

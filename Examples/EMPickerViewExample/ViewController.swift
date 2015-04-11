@@ -18,9 +18,11 @@ class ViewController: UIViewController {
         pv?.delegate = self;
         pv?.dataSource = self;
 
-        pv?.selectRowAtIndex(3, component: 1, section: 0, animated: false)
-
         view.addSubview(pv!)
+
+        pv?.selectRowAtIndex(3, component: 0, section: 0, animated: false)
+        pv?.selectRowAtIndex(4, component: 1, section: 0, animated: false)
+        pv?.selectRowAtIndex(1, component: 2, section: 0, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,7 +79,6 @@ extension ViewController: EMPickerViewDelegate {
     }
 
     func pickerView(pickerView: EMPickerView, didSelectRowAtIndex row: Int, component: Int, section: Int) {
-        println("Selected: Row", row, "Component", component, "Section", section)
-        println("Selected row at component 0 and section \(section) is \(pickerView.selectedRow(component: 0, section: section))")
+        println("section:\(section) :: component:\(component) :: row:\(pickerView.selectedRow(component: component, section: section))")
     }
 }
